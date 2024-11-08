@@ -1,10 +1,44 @@
 <h1>
   Movie #<%= @the_movie.id %> details
 </h1>
+<div>
+  <a href="/movies">
+    Go back
+  </a>
+</div>
+<div>
+  <a href="/delete_movie/<%= @the_movie.id %>">
+    Delete movie
+  </a>
+</div>
 
-<a href="/movies">
-  Go back
-</a>
+<hr>
+
+<form action="/update_movie/<%= @the_movie.id %>", method="post">
+  <div>
+    <label for="title_box">Title</label>
+    <input id="name_box" type="text" name="title_query" value=<%=@the_movie.title%>>
+  </div>
+    <label for="year_box">Year</label>
+    <input id="year_box", type="text", name="year_query", value=<%=@the_movie.year%>>
+  <div>
+    <label for="duration_box">Duration</label>
+    <input id="duration_box", type="text", name="duration_query", value=<%=@the_movie.duration%>>
+  </div>
+  <div>
+    <label for="description_box">Description</label>
+    <textarea id="description_box", type="text", name="description_query". rows=3><%=@the_movie.description%></textarea>
+  </div>
+  <div>
+    <label for="image_box">Image</label>
+    <input id="image_box", type="text", name="image_query", value=<%=@the_movie.image%>>
+  </div>
+  <div>
+    <label for="directors_id">Director ID</label>
+    <input id="directors_id", type="text", name="director_query", value=<%=@the_movie.director_id%>>
+  </div>
+  <button>Update movie</button>
+</form>
 
 <hr>
 
@@ -48,13 +82,7 @@
     Director
   </dt>
   <dd>
-    <% dir_id = @the_movie.director_id %>
-    
-    <% matching_directors = Director.where({ :id => dir_id }) %>
-    
-    <% the_director = matching_directors.at(0) %>
-
-    <%= the_director.name %>
+    <%=@the_director%>
   </dd>
 
   <dt>
